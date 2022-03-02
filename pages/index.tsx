@@ -55,7 +55,7 @@ const Home: NextPage = () => {
         <section className="text-gray-600 body-font">
           <div className="container px-5 py-24 mx-auto">
             <div className="mb-20 text-center">
-              <h1 className="mb-4 text-2xl font-medium text-center text-gray-900 sm:text-3xl title-font">
+              <h1 className="mb-4 text-2xl font-medium text-center sm:text-3xl title-font">
                 🤖️ Robot
               </h1>
               <p className="mx-auto text-base leading-relaxed xl:w-2/4 lg:w-3/4">All message content</p>
