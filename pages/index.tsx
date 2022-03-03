@@ -8,7 +8,7 @@ const fetcher = (...args: any[]) => fetch(...args).then((res) => res.json())
 const Home: NextPage = () => {
   useTitle('🤖️ Robot Notification');
 
-  const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_API}/messages`, fetcher)
+  const { data, error } = useSWR<ApiType.MessageItem>(`${process.env.NEXT_PUBLIC_API}/messages`, fetcher)
   console.log('datta', data)
 
   if (error) return <div>failed to load</div>
@@ -62,8 +62,8 @@ const Home: NextPage = () => {
             </div>
             <div className="flex flex-wrap -mx-2 lg:w-4/5 sm:mx-auto sm:mb-2 max-h-[1000px] overflow-auto">
               {
-                data.data.map((i) => (
-                  <div className="w-full p-2 sm:w-1/1" key={i.id}>
+                data.data.map((i, idx) => (
+                  <div className="w-full p-2 sm:w-1/1" key={idx}>
                     <div className="flex items-center h-full p-4 bg-gray-100 rounded">
                       <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" className="flex-shrink-0 w-6 h-6 mr-4 text-indigo-500" viewBox="0 0 24 24">
                         <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
