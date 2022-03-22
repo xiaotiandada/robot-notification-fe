@@ -1,9 +1,36 @@
 import type { NextPage } from 'next'
 import useSWR from "swr";
 import { useTitle } from 'ahooks';
+import { decrement, increment } from '../store/counter/counterSlice'
+import { useAppDispatch, useAppSelector } from '../store/hooks'
 
 // @ts-ignore
 const fetcher = (...args: any[]) => fetch(...args).then((res) => res.json())
+
+export function Counter() {
+  const count = useAppSelector(state => state.counter.value)
+  const dispatch = useAppDispatch()
+
+  return (
+    <div>
+      <div>
+        <button
+          aria-label="Increment value"
+          onClick={() => dispatch(increment())}
+        >
+          Increment
+        </button>
+        <span>{count}</span>
+        <button
+          aria-label="Decrement value"
+          onClick={() => dispatch(decrement())}
+        >
+          Decrement
+        </button>
+      </div>
+    </div>
+  )
+}
 
 const Home: NextPage = () => {
   useTitle('🤖️ Robot Notification');
@@ -16,6 +43,7 @@ const Home: NextPage = () => {
 
   return (
     <section className='flex flex-col h-full'>
+      <Counter />
       <div className="shadow-lg navbar bg-base-100">
         <div className="flex-1">
           <a className="text-xl normal-case btn btn-ghost">
@@ -52,7 +80,7 @@ const Home: NextPage = () => {
         </div>
       </div>
       <main className='flex justify-center flex-1'>
-        <section className="text-gray-600 body-font">
+        <section className="w-full text-gray-600 body-font">
           <div className="container px-5 py-24 mx-auto">
             <div className="mb-20 text-center">
               <h1 className="mb-4 text-2xl font-medium text-center sm:text-3xl title-font">
