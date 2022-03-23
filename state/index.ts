@@ -1,13 +1,16 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
-import counter from './counter/reducer'
 import logger from 'redux-logger'
 import { save, load } from "redux-localstorage-simple"
 
-const PERSISTED_KEYS: string[] = []
+import counter from './counter/reducer'
+import global from './global/reducer'
+
+const PERSISTED_KEYS: string[] = ['global']
 
 const store = configureStore({
   reducer: {
-    counter
+    global,
+    counter,
   },
   middleware: [...getDefaultMiddleware(), logger, save({ states: PERSISTED_KEYS })],
   devTools: true,

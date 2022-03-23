@@ -1,14 +1,17 @@
 import type { NextPage } from 'next'
 import useSWR from "swr";
 import { useTitle } from 'ahooks';
-import { decrement, increment } from '../state/counter/actions'
 import { useAppDispatch, useAppSelector } from '../hooks/useAppDispatch'
+import { decrement, increment } from '../state/counter/actions'
+import { updateDarkMode } from '../state/global/actions'
+
 
 // @ts-ignore
 const fetcher = (...args: any[]) => fetch(...args).then((res) => res.json())
 
 export function Counter() {
   const count = useAppSelector(state => state.counter.value)
+  const darkMode = useAppSelector(state => state.global.darkMode)
   const dispatch = useAppDispatch()
 
   return (
@@ -28,6 +31,8 @@ export function Counter() {
           Decrement
         </button>
       </div>
+
+      <button onClick={() => dispatch(updateDarkMode({ darkMode: !darkMode }))}>DarkMode - {darkMode.toString()}</button>
     </div>
   )
 }
