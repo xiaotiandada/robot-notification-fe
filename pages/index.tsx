@@ -1,8 +1,8 @@
 import type { NextPage } from 'next'
 import useSWR from "swr";
 import { useTitle } from 'ahooks';
-import { decrement, increment } from '../store/counter/counterSlice'
-import { useAppDispatch, useAppSelector } from '../store/hooks'
+import { decrement, increment } from '../state/counter/counterSlice'
+import { useAppDispatch, useAppSelector } from '../hooks/useAppDispatch'
 
 // @ts-ignore
 const fetcher = (...args: any[]) => fetch(...args).then((res) => res.json())

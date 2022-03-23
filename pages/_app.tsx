@@ -1,5 +1,5 @@
 import type { AppProps } from 'next/app'
-import { store } from '../store/index'
+import store from '../state/index'
 import { Provider } from 'react-redux'
 
 import '../styles/globals.css'
