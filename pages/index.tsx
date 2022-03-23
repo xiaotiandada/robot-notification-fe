@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import useSWR from "swr";
 import { useTitle } from 'ahooks';
-import { decrement, increment } from '../state/counter/counterSlice'
+import { decrement, increment } from '../state/counter/actions'
 import { useAppDispatch, useAppSelector } from '../hooks/useAppDispatch'
 
 // @ts-ignore
@@ -16,14 +16,14 @@ export function Counter() {
       <div>
         <button
           aria-label="Increment value"
-          onClick={() => dispatch(increment())}
+          onClick={() => dispatch(increment(count + 1))}
         >
           Increment
         </button>
         <span>{count}</span>
         <button
           aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
+          onClick={() => dispatch(decrement(count - 1))}
         >
           Decrement
         </button>
