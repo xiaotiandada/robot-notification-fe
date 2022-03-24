@@ -1,9 +1,9 @@
 import type { NextPage } from 'next'
 import useSWR from "swr";
 import { useTitle } from 'ahooks';
-import { useAppDispatch, useAppSelector } from '../hooks/useAppDispatch'
-import { decrement, increment } from '../state/counter/actions'
-import { updateDarkMode } from '../state/global/actions'
+import { useAppDispatch, useAppSelector } from 'hooks/useAppDispatch'
+import { decrement, increment } from 'state/counter/actions'
+import { updateDarkMode } from 'state/global/actions'
 
 
 // @ts-ignore
