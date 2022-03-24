@@ -1,5 +1,4 @@
-import { useMemo } from 'react'
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import logger from 'redux-logger'
 import {combineReducers} from "redux"; 
 import {
@@ -59,11 +58,11 @@ const persistedReducer = persistReducer(persistConfig, reducers);
 
 const store = configureStore({
   reducer: persistedReducer,
-  middleware: [...getDefaultMiddleware({
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     serializableCheck: {
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
-  }),logger],
+    }
+  }).concat(logger),
   devTools: true,
 })
 
