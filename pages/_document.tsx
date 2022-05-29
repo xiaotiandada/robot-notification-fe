@@ -17,6 +17,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          {/* https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests */}
           <meta
             httpEquiv="Content-Security-Policy"
             content="upgrade-insecure-requests"
