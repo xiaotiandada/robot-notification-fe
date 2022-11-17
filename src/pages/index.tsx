@@ -1,18 +1,33 @@
-import * as React from 'react'
+import React, { FC } from 'react'
 import type { HeadFC } from 'gatsby'
+import { graphql } from 'gatsby'
 
-const IndexPage = () => {
+type QueryData = {
+  data: {
+    allStrapiHomeSingle: {
+      nodes: {
+        id: string
+        title: string
+        description: string
+      }[]
+    }
+  }
+}
+
+const IndexPage: FC<QueryData> = ({ data }) => {
   return (
     <main className="flex flex-col h-[100vh] px-20 py-6">
-      <h1 className="mt-[30vh] text-6xl font-bold">我很小，但很快。</h1>
-      <p className="text-base mt-3">
-        接入你也许只需要一行代码。
+      <h1 className="mt-[30vh] text-6xl font-bold">
+        {data.allStrapiHomeSingle.nodes[0].title}
+      </h1>
+      <div className="text-base mt-3">
+        {data.allStrapiHomeSingle.nodes[0].description}
         <label className="swap swap-flip text-xl top-2">
           <input type="checkbox" />
           <div className="swap-on">🚀</div>
           <div className="swap-off">✈️</div>
         </label>
-      </p>
+      </div>
 
       <div className="mockup-code max-w-xl mt-12">
         <pre data-prefix="$">
@@ -26,6 +41,18 @@ const IndexPage = () => {
     </main>
   )
 }
+
+export const query = graphql`
+  query {
+    allStrapiHomeSingle {
+      nodes {
+        id
+        title
+        description
+      }
+    }
+  }
+`
 
 export default IndexPage
 
